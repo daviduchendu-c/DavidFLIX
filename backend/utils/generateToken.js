@@ -7,7 +7,7 @@ export const generateTokenAndSetCookie = (userId ,res) => {
     res.cookie('jwt-davidflix', token, {
         maxAge: 15 * 24 * 60 * 60 * 1000, // 15 days in milliseconds
         httpOnly: true,
-        secure: Env_VAR.NODE_ENV === 'development', 
+        secure: ENV_VAR.NODE_ENV !== 'development', // HTTPS-only cookies outside development
         sameSite: 'strict', // Adjust based on your requirements
     });
     return token;
