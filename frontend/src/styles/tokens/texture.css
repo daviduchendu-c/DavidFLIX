@@ -1,0 +1,18 @@
+/* DavidFLIX addition — not in the IWD LABS Design System.
+ * Background texture: a hairline grid that fades out toward the edges.
+ *
+ * Divergence (by direction): the system bans gradients and offers an 18px dot
+ * field. DavidFLIX uses a grid instead, with a radial vignette applied as a
+ * MASK — the gradient only controls where the grid shows, so the page colour
+ * itself stays flat. Consumed by the .grid-field utility in src/index.css. */
+:root {
+  --grid-size: 32px;                       /* cell size; 2x the system's 16px grid */
+  --grid-line-width: 1px;
+  --grid-line: rgba(8, 33, 57, 0.10);      /* navy hairline on the light page */
+  /* Visible in the centre, gone by the edges. */
+  --grid-vignette: radial-gradient(ellipse 60% 55% at 50% 40%, #000 15%, transparent 85%);
+}
+
+.iwd-dark {
+  --grid-line: rgba(239, 239, 239, 0.09);  /* off-white hairline on navy */
+}

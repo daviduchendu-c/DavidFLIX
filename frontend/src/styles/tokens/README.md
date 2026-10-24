@@ -10,3 +10,8 @@ stylesheet, so the same Google Fonts URL is loaded with a `<link>` in
 `index.html` instead.
 
 DavidFLIX is light-first like the system. Dark mode adds `.iwd-dark` to `<html>` (see `src/store/theme.js`), and the home-screen hero band is always a scoped `.iwd-dark` block because it sits on movie key art.
+
+`texture.css` is a DavidFLIX addition: the background grid with a vignette
+(`.grid-field` in `src/index.css`). It replaces the system's 18px dot field, and its
+vignette is a gradient used as a mask, a deliberate divergence from the system's
+no-gradient rule.

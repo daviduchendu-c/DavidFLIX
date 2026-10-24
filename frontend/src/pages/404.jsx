@@ -5,7 +5,7 @@ import ThemeToggle from "../components/ThemeToggle";
 
 const NotFoundPage = () => {
 	return (
-		<div className='dot-field flex min-h-screen flex-col bg-surface-page text-ink-strong'>
+		<div className='grid-field flex min-h-screen flex-col bg-surface-page text-ink-strong'>
 			<header className='mx-auto flex w-full max-w-layout items-center justify-between px-4 py-4 md:px-8'>
 				<Logo size='lg' />
 				<ThemeToggle />

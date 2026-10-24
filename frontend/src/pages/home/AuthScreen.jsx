@@ -37,7 +37,7 @@ const AuthScreen = () => {
 	return (
 		<div className='bg-surface-page text-ink-strong'>
 			{/* hero */}
-			<div className='dot-field border-b border-line-subtle'>
+			<div className='grid-field border-b border-line-subtle'>
 				<header className='mx-auto flex max-w-layout items-center justify-between px-4 py-4 md:px-8'>
 					<Logo size='lg' />
 					<div className='flex items-center gap-2'>
