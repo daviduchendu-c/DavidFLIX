@@ -3,17 +3,25 @@ import dns from 'dns';
 
 import {ENV_VAR} from './envVars.js';
 
-// The system DNS (127.0.0.1) refuses SRV lookups needed by mongodb+srv:// URIs
-dns.setServers(['8.8.8.8', '1.1.1.1']);
+// Locally, the system DNS (127.0.0.1) refuses SRV lookups needed by mongodb+srv:// URIs.
+// Vercel's resolvers handle them, so leave its DNS alone.
+if (!process.env.VERCEL) {
+    dns.setServers(['8.8.8.8', '1.1.1.1']);
+}
 
-
-
+// Serverless functions are reused between requests, so keep one connection
+// promise per instance instead of reconnecting every time.
+let connection = null;
 
 export const connectDB = async () => {
-    try {
-     const conn = await mongoose.connect(ENV_VAR.MONGO_URI) 
-     console.log(`MongoDB Connected: ${conn.connection.host}`);
-    } catch (error) {
-        console.error(`Error connecting to MongoDB: ${error.message}`);
-        process.exit(1);
-    } }
+    if (!connection) {
+        connection = mongoose.connect(ENV_VAR.MONGO_URI).then((conn) => {
+            console.log(`MongoDB Connected: ${conn.connection.host}`);
+            return conn;
+        }).catch((error) => {
+            connection = null; // let the next request retry
+            throw error;
+        });
+    }
+    return connection;
+};
