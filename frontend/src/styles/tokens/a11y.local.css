@@ -1,0 +1,46 @@
+/* Copied from the IWD LABS website (IWD Website/src/styles/tokens/a11y.local.css).
+   Brand divergence #3: primary buttons are one azure fill with a white label,
+   hover is the lift alone. Re-copy when the website changes. */
+/* Accessibility overrides — brand divergence #3. See docs/brand-divergences.md.
+ *
+ * Imported AFTER tokens/colors.css. It touches only the semantic layer, never
+ * the four official brand colours, and every replacement is a point on the
+ * design system's own navy ramp rather than a new hue.
+ *
+ * Measured contrast ratios (WCAG 2.1, sRGB) are in the comments; recompute
+ * before changing any value. */
+:root {
+  /* Owner's call: primary buttons are one azure fill with one white label, and
+     hover is the lift alone (interactions.css) — neither colour changes.
+     KNOWN CONTRAST GAP: white on #2DA0D1 is 2.85:1, below AA 4.5:1 (it clears
+     only the 3:1 large-text bar at 18.66px bold, which 14-16px labels are not).
+     Navy text (5.49:1) or the #1D6D8F fill (5.02:1 with off-white) fix it. */
+  --interactive: var(--iwd-secondary); /* #2DA0D1 */
+  --interactive-hover: var(--iwd-secondary); /* unchanged on hover */
+  --text-on-secondary: #ffffff;
+
+  /* #74899B is 3.62:1 on white and 3.15:1 on the page — below AA for the 11-13px
+     text it carries (card meta, spec-row labels, breadcrumbs, footer meta).
+     #596E80 is the lightest point on the same navy ramp that clears 4.5:1 on
+     both surfaces, so the hierarchy survives and the tone stays navy-derived. */
+  --text-faint: #596e80; /* 5.29:1 on #FFFFFF, 4.60:1 on #EFEFEF */
+}
+
+/* The navy band inverts the scale, and its faint tone had the same problem:
+   #5C6E7D on #082139 is 3.09:1. */
+.iwd-dark {
+  --text-faint: #7b8fa0; /* 4.88:1 on #082139 */
+
+  /* Undo the interactive darkening above — inside a dark block it is actively
+     harmful. The design system pairs azure with NAVY text here, not off-white,
+     so darkening the fill drives the two together instead of apart:
+     navy on #1D6D8F is 2.83:1 and, worse, hover on #17607F fell to 2.34:1 —
+     the label got LESS readable the moment you pointed at it.
+     The rest state keeps the design system's dark-block pairing at 5.49:1.
+     Hover matches the light page — #1D6D8F with an off-white label, 5.02:1 —
+     so the label flip is the same everywhere and never sits navy-on-dark. */
+  /* Same single-colour button as the light page (see :root above). */
+  --interactive: var(--iwd-secondary);
+  --interactive-hover: var(--iwd-secondary);
+  --text-on-secondary: #ffffff;
+}

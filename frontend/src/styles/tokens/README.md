@@ -10,3 +10,8 @@ stylesheet, so the same Google Fonts URL is loaded with a `<link>` in
 `index.html` instead.
 
 DavidFLIX is light-first like the system. Dark mode adds `.iwd-dark` to `<html>` (see `src/store/theme.js`), and the home-screen hero band is always a scoped `.iwd-dark` block because it sits on movie key art.
+
+`a11y.local.css` comes from the IWD LABS **website** (`IWD Website/src/styles/tokens/`),
+not the design-system folder. It makes primary buttons one azure fill with a white
+label in both themes, with hover shown as a lift only, and darkens `--text-faint`
+for AA contrast. The button styles in `src/index.css` mirror the website's `.ds-btn`.

@@ -1,4 +1,5 @@
 @import "./styles/tokens/colors.css";
+@import "./styles/tokens/a11y.local.css";
 @import "./styles/tokens/typography.css";
 @import "./styles/tokens/spacing.css";
 @import "./styles/tokens/radius.css";
@@ -29,42 +30,116 @@
 }
 
 @layer components {
-	/* ---- Buttons: IWD Button spec (r-md, bold, 44px hit, 120ms, press 0.97) ----
-	   Each variant pins its hover text colour: base.css's `a:hover` would otherwise
-	   recolour link-buttons to --text-link-hover and hide the label. */
+	/* ---- Buttons: the IWD LABS website's .ds-btn (src/styles/ds.css + interactions.css) ----
+	   Primary is one azure fill with a white label in both themes (a11y.local.css);
+	   hover is a 2px lift with a deeper shadow, never a colour change. Every variant
+	   pins its hover text colour, because base.css's `a:hover` would otherwise
+	   recolour link-buttons and hide the label.
+	   Size modifiers come after the variants so they win the cascade. */
 	.btn {
-		@apply inline-flex items-center justify-center gap-2 rounded-md border border-transparent font-bold leading-none
-			transition duration-fast ease-out active:scale-[0.97] disabled:cursor-not-allowed disabled:shadow-none;
+		@apply inline-flex items-center justify-center gap-2 border border-transparent font-bold leading-none no-underline;
 		min-height: var(--hit-min);
 		padding: 12px 22px;
 		font-size: 14px;
+		border-radius: var(--r-md);
+		cursor: pointer;
+		transition:
+			background var(--dur-base) var(--ease-spring),
+			transform var(--dur-base) var(--ease-spring),
+			box-shadow var(--dur-base) var(--ease-spring),
+			border-radius var(--dur-base) var(--ease-spring);
 	}
-	.btn-lg {
-		min-height: 52px;
-		padding: 16px 28px;
-		font-size: 16px;
+	.btn:active {
+		transform: scale(0.97);
+	}
+	.btn-primary {
+		@apply btn shadow-sm;
+		background: var(--interactive);
+		color: var(--text-on-secondary);
+	}
+	.btn-primary:hover {
+		background: var(--interactive-hover);
+		color: var(--text-on-secondary);
+		transform: translateY(-2px);
+		box-shadow: var(--shadow-md);
+	}
+	.btn-primary:active {
+		transform: translateY(0) scale(0.97);
+		box-shadow: var(--shadow-sm);
+	}
+	.btn-ghost {
+		@apply btn;
+		background: transparent;
+		color: var(--text-strong);
+		border-color: var(--border-default);
+	}
+	.btn-ghost:hover {
+		background: var(--surface-raised);
+		color: var(--text-strong);
+	}
+	.btn-danger {
+		@apply btn shadow-sm;
+		background: var(--iwd-accent);
+		color: var(--text-on-accent);
+	}
+	.btn-danger:hover {
+		background: var(--iwd-accent-bright);
+		color: var(--text-on-accent);
+	}
+	.btn-quiet {
+		@apply btn;
+		background: var(--interactive-quiet);
+		color: var(--text-link);
+	}
+	.btn-quiet:hover {
+		background: var(--surface-raised);
+		color: var(--text-link);
+	}
+	.btn-icon {
+		@apply btn;
+		background: transparent;
+		color: var(--text-strong);
+		border-color: var(--border-default);
+		padding: 0;
+		width: var(--hit-min);
+	}
+	.btn-icon:hover {
+		background: var(--surface-raised);
+		color: var(--text-strong);
+	}
+	:is(.btn, .btn-primary, .btn-ghost, .btn-danger, .btn-quiet, .btn-icon):is(:disabled, [aria-disabled="true"]) {
+		background: var(--surface-sunken);
+		color: var(--text-faint);
+		box-shadow: none;
+		border-color: transparent;
+		cursor: not-allowed;
+		transform: none;
 	}
 	.btn-sm {
 		min-height: 36px;
 		padding: 8px 16px;
 		font-size: 12.5px;
+		border-radius: var(--r-sm);
 	}
-	.btn-primary {
-		@apply btn bg-interactive text-interactive-on shadow-sm hover:bg-interactive-hover hover:text-interactive-on disabled:bg-surface-sunken disabled:text-ink-faint;
+	.btn-lg {
+		min-height: 52px;
+		padding: 18px 36px;
+		font-size: 16px;
+		border-radius: var(--r-lg);
 	}
-	.btn-ghost {
-		@apply btn border-line bg-transparent text-ink-strong hover:bg-surface-raised hover:text-ink-strong;
-	}
-	.btn-danger {
-		@apply btn bg-alert text-offwhite shadow-sm hover:bg-alert-bright hover:text-offwhite;
-	}
-	.btn-quiet {
-		@apply btn bg-[var(--interactive-quiet)] text-link hover:bg-surface-raised hover:text-link;
-	}
-	.btn-icon {
-		@apply btn border-line bg-transparent text-ink-strong hover:bg-surface-raised hover:text-ink-strong;
-		padding: 0;
-		width: var(--hit-min);
+	@media (prefers-reduced-motion: reduce) {
+		.btn,
+		.btn-primary,
+		.btn-ghost,
+		.btn-danger,
+		.btn-quiet,
+		.btn-icon {
+			transition: background var(--dur-fast) var(--ease-out);
+		}
+		.btn-primary:hover,
+		:is(.btn, .btn-primary, .btn-ghost, .btn-danger, .btn-quiet, .btn-icon):active {
+			transform: none;
+		}
 	}
 
 	/* ---- Inputs: sunken well, azure hairline on focus, no glow ---- */
