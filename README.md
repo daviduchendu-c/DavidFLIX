@@ -75,4 +75,4 @@ colour, "FLIX" azure. The mark is the same D inside an azure circle.
 | `brand/app-icon.svg` | 512px squircle app icon |
 | `avatar1–3.svg`, `avatar-kids.svg` | Profile avatars |
 | `illustrations/screen.svg`, `devices.svg` | Landing-page illustrations |
-| `textures/dot-field*.svg` | 18px dot-field texture, light and dark |
+| `.grid-field` (`src/styles/tokens/texture.css`) | Background grid with vignette, light and dark |

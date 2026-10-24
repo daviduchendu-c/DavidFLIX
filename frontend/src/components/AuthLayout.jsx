@@ -1,10 +1,10 @@
 import Logo from "./Logo";
 import ThemeToggle from "./ThemeToggle";
 
-// Shared shell for the sign-in and sign-up pages: dot-field page, one centred card.
+// Shared shell for the sign-in and sign-up pages: grid-field page, one centred card.
 const AuthLayout = ({ eyebrow, title, children, footer }) => {
 	return (
-		<div className='dot-field min-h-screen w-full bg-surface-page'>
+		<div className='grid-field min-h-screen w-full bg-surface-page'>
 			<header className='mx-auto flex max-w-layout items-center justify-between px-4 py-4 md:px-8'>
 				<Logo size='lg' />
 				<ThemeToggle />

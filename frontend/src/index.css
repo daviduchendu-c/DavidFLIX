@@ -5,6 +5,7 @@
 @import "./styles/tokens/radius.css";
 @import "./styles/tokens/elevation.css";
 @import "./styles/tokens/motion.css";
+@import "./styles/tokens/texture.css";
 @import "./styles/tokens/base.css";
 
 @tailwind base;
@@ -238,14 +239,26 @@
 		font-stretch: var(--fstretch-display);
 	}
 
-	/* 18px circuit-dot field — the system's sanctioned texture, kept at low presence. */
-	.dot-field {
-		background-image: url("/textures/dot-field-light.svg");
-		background-size: 18px 18px;
+	/* Background grid with a vignette (tokens/texture.css). The grid sits on a
+	   ::before layer behind the content, so the mask fades only the lines,
+	   never the page's own text or controls. */
+	.grid-field {
+		position: relative;
+		isolation: isolate;
 	}
-	.iwd-dark .dot-field,
-	.iwd-dark.dot-field {
-		background-image: url("/textures/dot-field.svg");
+	.grid-field::before {
+		content: "";
+		position: absolute;
+		inset: 0;
+		z-index: -1;
+		pointer-events: none;
+		background-image:
+			linear-gradient(to right, var(--grid-line) var(--grid-line-width), transparent var(--grid-line-width)),
+			linear-gradient(to bottom, var(--grid-line) var(--grid-line-width), transparent var(--grid-line-width));
+		background-size: var(--grid-size) var(--grid-size);
+		background-position: center top;
+		-webkit-mask-image: var(--grid-vignette);
+		mask-image: var(--grid-vignette);
 	}
 
 	/* Flat navy scrims over key art. Transparency only, no gradients. */

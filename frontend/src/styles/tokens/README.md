@@ -15,3 +15,8 @@ DavidFLIX is light-first like the system. Dark mode adds `.iwd-dark` to `<html>`
 not the design-system folder. It makes primary buttons one azure fill with a white
 label in both themes, with hover shown as a lift only, and darkens `--text-faint`
 for AA contrast. The button styles in `src/index.css` mirror the website's `.ds-btn`.
+
+`texture.css` is a DavidFLIX addition: the background grid with a vignette
+(`.grid-field` in `src/index.css`). It replaces the system's 18px dot field, and its
+vignette is a gradient used as a mask, a deliberate divergence from the system's
+no-gradient rule.
