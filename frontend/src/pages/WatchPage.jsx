@@ -16,6 +16,7 @@ const WatchPage = () => {
 	const [loading, setLoading] = useState(true);
 	const [content, setContent] = useState({});
 	const [similarContent, setSimilarContent] = useState([]);
+	const [cast, setCast] = useState([]);
 	const { contentType } = useContentStore();
 
 	const sliderRef = useRef(null);
@@ -49,6 +50,19 @@ const WatchPage = () => {
 		};
 
 		getSimilarContent();
+	}, [contentType, id]);
+
+	useEffect(() => {
+		const getCast = async () => {
+			try {
+				const res = await axios.get(`/api/v1/${contentType}/${id}/credits`);
+				setCast(res.data.cast.filter((person) => person.profile_path));
+			} catch (error) {
+				setCast([]);
+			}
+		};
+
+		getCast();
 	}, [contentType, id]);
 
 	useEffect(() => {
@@ -193,6 +207,27 @@ const WatchPage = () => {
 						/>
 					)}
 				</div>
+
+				{/* cast */}
+				{cast.length > 0 && (
+					<section className='mt-20'>
+						<h3 className='mb-6 text-2xl'>Top cast</h3>
+						<div className='flex snap-x gap-5 overflow-x-scroll pb-2 scrollbar-hide'>
+							{cast.map((person) => (
+								<div key={person.credit_id} className='w-28 shrink-0 snap-start text-center'>
+									<img
+										src={SMALL_IMG_BASE_URL + person.profile_path}
+										alt={person.name}
+										loading='lazy'
+										className='mx-auto size-24 rounded-full border border-line-subtle object-cover shadow-sm'
+									/>
+									<p className='mt-3 truncate text-sm font-semibold text-ink-strong'>{person.name}</p>
+									<p className='truncate text-xs text-ink-faint'>{person.character}</p>
+								</div>
+							))}
+						</div>
+					</section>
+				)}
 
 				{/* similar */}
 				{similarContent.length > 0 && (

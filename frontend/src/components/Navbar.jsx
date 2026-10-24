@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useAuthStore } from "../store/authUser";
 import { useContentStore } from "../store/content";
 import Icon from "./Icon";
@@ -11,6 +11,20 @@ const Navbar = () => {
 	const { user, logout } = useAuthStore();
 	const { contentType, setContentType } = useContentStore();
 	const { pathname } = useLocation();
+	const navigate = useNavigate();
+
+	// Press "/" anywhere (outside a text field) to jump to search.
+	useEffect(() => {
+		const onKeyDown = (e) => {
+			const typing = ["INPUT", "TEXTAREA", "SELECT"].includes(e.target.tagName) || e.target.isContentEditable;
+			if (e.key === "/" && !typing && !e.metaKey && !e.ctrlKey && !e.altKey) {
+				e.preventDefault();
+				navigate("/search");
+			}
+		};
+		window.addEventListener("keydown", onKeyDown);
+		return () => window.removeEventListener("keydown", onKeyDown);
+	}, [navigate]);
 
 	const links = [
 		{ label: "Movies", to: "/", active: pathname === "/" && contentType === "movie", onClick: () => setContentType("movie") },
@@ -39,7 +53,7 @@ const Navbar = () => {
 
 			<div className='flex items-center gap-1'>
 				<ThemeToggle />
-				<Link to='/search' className='btn-icon border-transparent' aria-label='Search'>
+				<Link to='/search' className='btn-icon border-transparent' aria-label='Search' title='Search (press /)'>
 					<Icon name='search' />
 				</Link>
 				<img

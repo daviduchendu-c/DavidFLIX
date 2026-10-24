@@ -79,6 +79,7 @@ const SearchPage = () => {
 						value={searchTerm}
 						onChange={(e) => setSearchTerm(e.target.value)}
 						placeholder={activePlaceholder}
+						autoFocus
 						className='field flex-1'
 					/>
 					<button className='btn-primary' disabled={isSearching} aria-label='Search'>

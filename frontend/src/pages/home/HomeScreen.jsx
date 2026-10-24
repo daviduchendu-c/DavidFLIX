@@ -8,7 +8,7 @@ import MovieSlider from "../../components/MovieSlider";
 import { useState } from "react";
 
 const HomeScreen = () => {
-	const { trendingContent } = useGetTrendingContent();
+	const { trendingContent, shuffle, isShuffling } = useGetTrendingContent();
 	const { contentType } = useContentStore();
 	const [imgLoading, setImgLoading] = useState(true);
 
@@ -72,11 +72,24 @@ const HomeScreen = () => {
 							<Icon name='info' />
 							More info
 						</Link>
+						<button
+							className='btn-ghost btn-lg bg-navy/40'
+							onClick={() => {
+								setImgLoading(true);
+								shuffle();
+							}}
+							disabled={isShuffling}
+							title='Show another trending title'
+						>
+							<Icon name='shuffle' className={isShuffling ? "animate-spin" : ""} />
+							Shuffle
+						</button>
 					</div>
 				</div>
 			</div>
 
 			<div className='flex flex-col gap-12 bg-surface-page py-12'>
+				<MovieSlider category='popular' ranked />
 				{(contentType === "movie" ? MOVIE_CATEGORIES : TV_CATEGORIES).map((category) => (
 					<MovieSlider key={category} category={category} />
 				))}

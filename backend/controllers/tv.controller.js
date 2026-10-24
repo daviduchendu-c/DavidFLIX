@@ -56,3 +56,16 @@ export async function getTvsByCategory(req, res) {
         res.status(500).json({ success: false, message: "Internal Server Error" });
     }
 }
+
+export async function getTvCredits(req, res) {
+    const { id } = req.params;
+    try {
+        const data = await fetchfromTMDB(`https://api.themoviedb.org/3/tv/${id}/credits?language=en-US`);
+        res.status(200).json({ success: true, cast: data.cast.slice(0, 15) });
+    } catch (error) {
+        if (error.response?.status === 404) {
+            return res.status(404).send(null);
+        }
+        res.status(500).json({ success: false, message: "Internal Server Error" });
+    }
+}
