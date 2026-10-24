@@ -1,4 +1,5 @@
 import Icon from "./Icon";
+import Button from "./ui/Button";
 
 const GITHUB_URL = "https://github.com/daviduchendu-c";
 const PORTFOLIO_URL = "https://daviduchendu.vercel.app";
@@ -25,14 +26,17 @@ const Footer = () => {
 				<div className='flex flex-col gap-3 md:items-end'>
 					<p className='eyebrow'>Find me online</p>
 					<div className='flex flex-wrap gap-3'>
-						<a href={GITHUB_URL} target='_blank' rel='noreferrer' className='btn-ghost btn-sm'>
-							<GitHubMark />
+						<Button variant='ghost' size='sm' href={GITHUB_URL} icon={<GitHubMark />}>
 							GitHub
-						</a>
-						<a href={PORTFOLIO_URL} target='_blank' rel='noreferrer' className='btn-primary btn-sm'>
-							<Icon name='person' size={18} />
+						</Button>
+						<Button
+							size='sm'
+							href={PORTFOLIO_URL}
+							icon={<Icon name='person' size={18} />}
+							trailingIcon={<Icon name='arrow_outward' size={18} />}
+						>
 							Portfolio
-						</a>
+						</Button>
 					</div>
 				</div>
 			</div>

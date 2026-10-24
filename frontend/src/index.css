@@ -29,7 +29,9 @@
 }
 
 @layer components {
-	/* ---- Buttons: IWD Button spec (r-md, bold, 44px hit, 120ms, press 0.97) ---- */
+	/* ---- Buttons: IWD Button spec (r-md, bold, 44px hit, 120ms, press 0.97) ----
+	   Each variant pins its hover text colour: base.css's `a:hover` would otherwise
+	   recolour link-buttons to --text-link-hover and hide the label. */
 	.btn {
 		@apply inline-flex items-center justify-center gap-2 rounded-md border border-transparent font-bold leading-none
 			transition duration-fast ease-out active:scale-[0.97] disabled:cursor-not-allowed disabled:shadow-none;
@@ -48,16 +50,19 @@
 		font-size: 12.5px;
 	}
 	.btn-primary {
-		@apply btn bg-interactive text-interactive-on shadow-sm hover:bg-interactive-hover disabled:bg-surface-sunken disabled:text-ink-faint;
+		@apply btn bg-interactive text-interactive-on shadow-sm hover:bg-interactive-hover hover:text-interactive-on disabled:bg-surface-sunken disabled:text-ink-faint;
 	}
 	.btn-ghost {
-		@apply btn border-line bg-transparent text-ink-strong hover:bg-surface-raised;
+		@apply btn border-line bg-transparent text-ink-strong hover:bg-surface-raised hover:text-ink-strong;
 	}
 	.btn-danger {
-		@apply btn bg-alert text-offwhite shadow-sm hover:bg-alert-bright;
+		@apply btn bg-alert text-offwhite shadow-sm hover:bg-alert-bright hover:text-offwhite;
+	}
+	.btn-quiet {
+		@apply btn bg-[var(--interactive-quiet)] text-link hover:bg-surface-raised hover:text-link;
 	}
 	.btn-icon {
-		@apply btn border-line bg-transparent text-ink-strong hover:bg-surface-raised;
+		@apply btn border-line bg-transparent text-ink-strong hover:bg-surface-raised hover:text-ink-strong;
 		padding: 0;
 		width: var(--hit-min);
 	}
