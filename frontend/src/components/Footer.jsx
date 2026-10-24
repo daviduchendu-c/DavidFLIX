@@ -20,10 +20,6 @@ const Footer = () => {
 						<img src='/logo-light.svg' alt='DavidFLIX' className='h-4 dark:hidden' />
 						<img src='/logo.svg' alt='DavidFLIX' className='hidden h-4 dark:block' />
 					</div>
-					<p className='mt-4 max-w-md text-sm'>
-						Designed and built by David Uchendu. Trailers, trending titles and search, on the IWD LABS
-						design system.
-					</p>
 				</div>
 
 				<div className='flex flex-col gap-3 md:items-end'>
