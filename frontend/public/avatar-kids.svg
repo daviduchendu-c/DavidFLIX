@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="Kids profile avatar"><title>Kids profile avatar</title>
+<rect width="120" height="120" rx="28" fill="#7FC4E3"/>
+<circle cx="42" cy="54" r="11" fill="#082139"/><circle cx="45" cy="50" r="3.5" fill="#EFEFEF"/>
+<circle cx="78" cy="54" r="11" fill="#082139"/><circle cx="81" cy="50" r="3.5" fill="#EFEFEF"/>
+<path d="M44 76 H76 A16 16 0 0 1 44 76 Z" fill="#082139"/>
+<polygon points="60,10 66,24 52,24" fill="#082139"/>
+<circle cx="98" cy="22" r="6" fill="#BB120F"/>
+</svg>

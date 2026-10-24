@@ -1,0 +1,203 @@
+@import "./styles/tokens/colors.css";
+@import "./styles/tokens/typography.css";
+@import "./styles/tokens/spacing.css";
+@import "./styles/tokens/radius.css";
+@import "./styles/tokens/elevation.css";
+@import "./styles/tokens/motion.css";
+@import "./styles/tokens/base.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+	body {
+		font-family: var(--font-body);
+		font-weight: var(--fw-medium);
+	}
+
+	/* Preflight resets heading weight; restore the system's expanded bold. */
+	h1,
+	h2,
+	h3,
+	h4 {
+		font-stretch: var(--fstretch-heading);
+		font-weight: var(--fw-bold);
+		letter-spacing: var(--ls-title);
+		line-height: var(--lh-heading);
+	}
+}
+
+@layer components {
+	/* ---- Buttons: IWD Button spec (r-md, bold, 44px hit, 120ms, press 0.97) ---- */
+	.btn {
+		@apply inline-flex items-center justify-center gap-2 rounded-md border border-transparent font-bold leading-none
+			transition duration-fast ease-out active:scale-[0.97] disabled:cursor-not-allowed disabled:shadow-none;
+		min-height: var(--hit-min);
+		padding: 12px 22px;
+		font-size: 14px;
+	}
+	.btn-lg {
+		min-height: 52px;
+		padding: 16px 28px;
+		font-size: 16px;
+	}
+	.btn-sm {
+		min-height: 36px;
+		padding: 8px 16px;
+		font-size: 12.5px;
+	}
+	.btn-primary {
+		@apply btn bg-azure text-navy shadow-sm hover:bg-azure-tint disabled:bg-surface-sunken disabled:text-ink-faint;
+	}
+	.btn-ghost {
+		@apply btn border-line bg-transparent text-ink-strong hover:bg-surface-raised;
+	}
+	.btn-danger {
+		@apply btn bg-alert text-offwhite shadow-sm hover:bg-alert-bright;
+	}
+	.btn-icon {
+		@apply btn border-line bg-transparent text-ink-strong hover:bg-surface-raised;
+		padding: 0;
+		width: var(--hit-min);
+	}
+
+	/* ---- Inputs: sunken well, azure hairline on focus, no glow ---- */
+	.field-label {
+		@apply mb-1.5 block text-ink-faint;
+		font-size: var(--fs-micro);
+		font-weight: var(--fw-semibold);
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+	}
+	.field {
+		@apply w-full rounded-md border border-line bg-surface-sunken text-ink-strong outline-none
+			transition-colors duration-fast ease-out placeholder:text-ink-faint focus:border-azure;
+		padding: 12px 14px;
+		font-size: var(--fs-lede);
+	}
+	.field:focus-visible {
+		outline: none;
+	}
+
+	/* ---- Cards: surface, hairline, r-lg, short hard shadow ---- */
+	.card {
+		@apply rounded-lg border border-line-subtle bg-surface-card shadow-sm;
+	}
+	.card-interactive {
+		@apply card transition duration-fast ease-out hover:border-line hover:shadow-md;
+	}
+
+	/* ---- Eyebrow: uppercase micro-label with the standing red node dot ---- */
+	.eyebrow {
+		@apply flex items-center gap-2 text-azure;
+		font-size: var(--fs-label);
+		font-weight: var(--fw-bold);
+		letter-spacing: var(--ls-label);
+		text-transform: uppercase;
+	}
+	.eyebrow::before {
+		content: "";
+		@apply size-[7px] shrink-0 rounded-full bg-alert;
+	}
+
+	/* ---- Badge: full radius is reserved for badges and tags ---- */
+	.badge {
+		@apply inline-flex items-center gap-1.5 rounded-full border border-line-subtle bg-surface-raised text-ink-body;
+		padding: 4px 10px;
+		font-size: var(--fs-micro);
+		font-weight: var(--fw-semibold);
+		letter-spacing: 0.08em;
+		line-height: 1.4;
+		text-transform: uppercase;
+	}
+
+	/* ---- Underline tabs ---- */
+	.tab {
+		@apply -mb-px cursor-pointer border-b-2 border-transparent py-2.5 font-semibold text-ink-faint
+			transition-colors duration-fast ease-out hover:text-ink-strong;
+		letter-spacing: 0.02em;
+	}
+	.tab-active {
+		@apply border-azure text-ink-strong;
+	}
+
+	/* ---- Nav link: active item carries a red keyline ---- */
+	.nav-link {
+		@apply relative py-2 font-semibold text-ink-body transition-colors duration-fast ease-out hover:text-ink-strong;
+	}
+	.nav-link-active {
+		@apply text-ink-strong;
+	}
+	.nav-link-active::after {
+		content: "";
+		@apply absolute -bottom-0.5 left-0 h-0.5 w-4 rounded-full bg-alert;
+	}
+
+	/* Material Symbols Rounded, FILL 1 — the system's filled-glyph icon set. */
+	.icon {
+		font-family: "Material Symbols Rounded";
+		font-weight: normal;
+		font-style: normal;
+		font-size: 24px;
+		line-height: 1;
+		letter-spacing: normal;
+		text-transform: none;
+		display: inline-block;
+		white-space: nowrap;
+		direction: ltr;
+		font-feature-settings: "liga";
+		-webkit-font-smoothing: antialiased;
+		font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0, "opsz" 24;
+		user-select: none;
+	}
+}
+
+@layer utilities {
+	.font-expanded {
+		font-stretch: var(--fstretch-display);
+	}
+
+	/* 18px circuit-dot field — the system's sanctioned texture, kept at low presence. */
+	.dot-field {
+		background-image: url("/textures/dot-field.svg");
+		background-size: 18px 18px;
+	}
+
+	/* Flat navy scrims over key art. Transparency only, no gradients. */
+	.scrim {
+		background-color: rgba(8, 33, 57, 0.72);
+	}
+	.scrim-strong {
+		background-color: rgba(8, 33, 57, 0.88);
+	}
+}
+
+/* Loading placeholder: a flat pulse between two surface tones. No gradient sweep. */
+.shimmer {
+	animation: shimmer 1.2s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate;
+	background-color: var(--surface-card);
+}
+
+@keyframes shimmer {
+	from {
+		background-color: var(--surface-card);
+	}
+	to {
+		background-color: var(--surface-raised);
+	}
+}
+
+::-webkit-scrollbar {
+	width: 8px;
+	height: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+	background-color: var(--surface-raised);
+	border-radius: var(--r-sm);
+}
+
+::-webkit-scrollbar-track {
+	background-color: var(--surface-sunken);
+}

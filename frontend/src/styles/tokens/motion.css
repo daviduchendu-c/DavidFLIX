@@ -1,0 +1,17 @@
+:root{
+  --dur-fast:120ms;   /* @kind other */
+  --dur-base:220ms;   /* @kind other */
+  --dur-slow:360ms;   /* @kind other */
+  --stagger:70ms;     /* @kind other */
+
+  --ease-standard:cubic-bezier(0.4,0,0.2,1); /* @kind other */
+  --ease-out:cubic-bezier(0,0,0.2,1);        /* @kind other */
+  --ease-in:cubic-bezier(0.4,0,1,1);         /* @kind other */
+
+  /* Playful/marketing-surface default: card hover/lift, button press, and
+     scroll-reveal all use this. Utility surfaces (forms, focus states, admin
+     UI) keep --ease-standard/--ease-out — see motion.card.html for the
+     divergence rationale. */
+  --dur-carousel:800ms; /* @kind other */
+  --ease-spring:cubic-bezier(0.4,2,0.3,1); /* @kind other */
+}

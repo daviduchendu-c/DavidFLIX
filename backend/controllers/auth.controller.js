@@ -1,5 +1,5 @@
 import bcryptjs from 'bcryptjs';
-import User from '../model/User.model.js';
+import User from '../model/user.model.js';
 import { generateTokenAndSetCookie } from '../utils/generateToken.js';
 
 export async function signup(req, res) {
@@ -25,7 +25,7 @@ export async function signup(req, res) {
             return res.status(400).json({ success: false, message: 'Username already exists' });
         }
 
-        const PROFILE_PIC = ["/avatar1.png","/avatar2.png","/avatar3.png"];
+        const PROFILE_PIC = ["/avatar1.svg","/avatar2.svg","/avatar3.svg"];
 
         const image = PROFILE_PIC[Math.floor(Math.random() * PROFILE_PIC.length)];
 
@@ -64,7 +64,7 @@ export async function login(req, res) {
     return res.status(400).json({ success: false, message: 'Invalid Credentials ' });
   }
   generateTokenAndSetCookie(user._id, res);
-  res.status(200).json({ success: true, message: 'Logged in successfully' });
+  res.status(200).json({ success: true, user: { ...user._doc, password: "" } });
 
   
 } catch (error) {
@@ -82,3 +82,12 @@ export async function logout(req, res) {
         console.error('Error occurred while logging out:', error.message);
         res.status(500).json({ success: false, message: 'Error occurred while logging out' });
     }}
+
+export async function authCheck(req, res) {
+    try {
+        res.status(200).json({ success: true, user: req.user });
+    } catch (error) {
+        console.error('Error occurred while checking auth:', error.message);
+        res.status(500).json({ success: false, message: 'Error occurred while checking auth' });
+    }
+}

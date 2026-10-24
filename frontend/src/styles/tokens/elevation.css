@@ -1,0 +1,13 @@
+:root{
+  /* Hard, short, dark. No glow, no blur haze, no colored shadow.
+     On the light #EFEFEF page these read as a crisp lift, not a soft cloud. */
+  --shadow-sm:0 1px 2px rgba(8,33,57,0.10);
+  --shadow-md:0 4px 10px rgba(8,33,57,0.12);
+  --shadow-lg:0 10px 24px rgba(8,33,57,0.14);
+  --shadow-none:none;
+}
+.iwd-dark{
+  --shadow-sm:0 1px 2px rgba(0,0,0,0.35);
+  --shadow-md:0 4px 10px rgba(0,0,0,0.40);
+  --shadow-lg:0 10px 24px rgba(0,0,0,0.45);
+}

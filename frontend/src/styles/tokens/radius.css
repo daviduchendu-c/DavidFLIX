@@ -1,0 +1,9 @@
+:root{
+  /* Squarcle scale — square with continuous rounded corner. */
+  --r-sm:8px;
+  --r-md:14px;
+  --r-lg:20px;
+  --r-xl:28px;
+  --r-2xl:40px;
+  --r-full:999px;   /* tags & badges only */
+}

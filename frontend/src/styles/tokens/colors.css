@@ -1,0 +1,93 @@
+:root{
+  /* ---- Core brand (verified against the official IWD LABS brand sheet) ---- */
+  --iwd-primary:#EFEFEF;      /* Off-white — the page background */
+  --iwd-secondary:#2DA0D1;    /* Azure                           */
+  --iwd-accent:#BB120F;       /* Alert red                       */
+  --iwd-navy:#082139;         /* Dark azure — ink + dark blocks   */
+
+  /* ---- Derived light surfaces ---- */
+  --iwd-surface:#FFFFFF;
+  --iwd-surface-2:#F6F7F8;
+  --iwd-surface-sunken:#E3E6E9;
+  --iwd-surface-raised:#E9EBED;
+
+  /* ---- Derived ink neutrals (navy-based, never pure grey) ---- */
+  --iwd-ink:#082139;
+  --iwd-ink-muted:#3E5265;
+  --iwd-ink-faint:#74899B;
+
+  /* ---- Derived accents ---- */
+  --iwd-secondary-deep:#17607F;  /* azure darkened for text/links on light */
+  --iwd-secondary-dim:#1D6D8F;
+  --iwd-secondary-tint:#7FC4E3;
+  --iwd-secondary-wash:#E2F1F8;
+  --iwd-accent-dim:#7E0C0A;
+  --iwd-accent-bright:#D31411;
+  --iwd-accent-wash:#FAE7E7;
+  --iwd-navy-wash:#E9EDF1;   /* light navy tint, for tinted section bands */
+
+  /* ---- Hairlines ---- */
+  --iwd-border:rgba(8,33,57,0.12);
+  --iwd-border-strong:rgba(8,33,57,0.22);
+
+  /* ---- Semantic aliases (use these in components) ---- */
+  --surface-page:var(--iwd-primary);
+  --surface-card:var(--iwd-surface);
+  --surface-raised:var(--iwd-surface-raised);
+  --surface-sunken:var(--iwd-surface-sunken);
+  --surface-inverse:var(--iwd-navy);      /* full-bleed dark blocks, hero bands */
+
+  --text-strong:var(--iwd-ink);
+  --text-body:var(--iwd-ink-muted);
+  --text-faint:var(--iwd-ink-faint);
+  --text-inverse:var(--iwd-primary);
+  --text-link:var(--iwd-secondary-deep);
+  --text-link-hover:var(--iwd-navy);
+  --text-on-accent:var(--iwd-primary);
+  --text-on-secondary:var(--iwd-primary);
+
+  --border-subtle:var(--iwd-border);
+  --border-default:var(--iwd-border-strong);
+  --border-focus:var(--iwd-navy);
+
+  --interactive:var(--iwd-secondary);
+  --interactive-hover:var(--iwd-secondary-dim);
+  --interactive-quiet:var(--iwd-secondary-wash);
+
+  --status-ok-fg:var(--iwd-secondary-deep);
+  --status-ok-bg:var(--iwd-secondary-wash);
+  --status-ok-border:rgba(45,160,209,0.45);
+  --status-error-fg:var(--iwd-accent);
+  --status-error-bg:var(--iwd-accent-wash);
+  --status-error-border:rgba(187,18,15,0.35);
+  --status-critical:var(--iwd-accent);
+}
+
+/* Inverted block — navy band inside a light page (heroes, footers, code wells). */
+.iwd-dark{
+  --surface-page:var(--iwd-navy);
+  --surface-card:#0B2A47;
+  --surface-raised:#123A5C;
+  --surface-sunken:#010F1F;
+  --surface-inverse:var(--iwd-primary);
+  --text-strong:var(--iwd-primary);
+  --text-body:#9FB0BF;
+  --text-faint:#5C6E7D;
+  --text-inverse:var(--iwd-navy);
+  --text-link:var(--iwd-secondary);
+  --text-link-hover:var(--iwd-secondary-tint);
+  --text-on-secondary:var(--iwd-navy);
+  --border-subtle:rgba(239,239,239,0.12);
+  --border-default:rgba(239,239,239,0.22);
+  --border-focus:var(--iwd-primary);
+  --interactive-hover:var(--iwd-secondary-tint);
+  --interactive-quiet:rgba(45,160,209,0.15);
+  --status-ok-fg:var(--iwd-secondary-tint);
+  --status-ok-bg:rgba(45,160,209,0.15);
+  --status-ok-border:var(--iwd-secondary-dim);
+  --status-error-fg:#F08A88;
+  --status-error-bg:rgba(187,18,15,0.15);
+  --status-error-border:var(--iwd-accent-dim);
+  background:var(--surface-page);
+  color:var(--text-strong);
+}

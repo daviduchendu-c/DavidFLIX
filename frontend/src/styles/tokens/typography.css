@@ -1,0 +1,45 @@
+:root{
+  /* ---- Families: three faces, three jobs. Nothing else. ---- */
+  --font-display:"Anek Bangla",sans-serif;                 /* @kind font */
+  --font-heading:"Anek Bangla",sans-serif;                 /* @kind font */
+  --font-body:"Anek Bangla",sans-serif;                    /* @kind font */
+  --font-label:"Anek Bangla",sans-serif;                   /* @kind font */
+  --font-accent:"Pacifico",cursive;                        /* @kind font */
+
+  /* ---- Width axis: display + headings run expanded, everything else normal ---- */
+  --fstretch-display:125%;  /* @kind font */
+  --fstretch-heading:125%;  /* @kind font */
+  --fstretch-body:100%;     /* @kind font */
+
+  /* ---- Weights: bold is the working weight ---- */
+  --fw-regular:400;  /* @kind font */
+  --fw-medium:500;   /* @kind font */
+  --fw-semibold:600; /* @kind font */
+  --fw-bold:700;     /* @kind font */
+  --fw-black:800;    /* @kind font */
+
+  /* ---- Sizes ---- */
+  --fs-display:clamp(48px,7.5vw,84px); /* @kind font */
+  --fs-title:clamp(30px,3.8vw,44px); /* @kind font */
+  --fs-h3:26px;      /* @kind font */
+  --fs-h4:20px;      /* @kind font */
+  --fs-lede:19px;    /* @kind font */
+  --fs-body:17px;    /* @kind font */
+  --fs-sm:15px;      /* @kind font */
+  --fs-code:14px;    /* @kind font */
+  --fs-label:13px;   /* @kind font */
+  --fs-micro:12px;   /* @kind font */
+
+  /* ---- Line heights ---- */
+  --lh-tight:1.02;   /* @kind font */
+  --lh-heading:1.2;  /* @kind font */
+  --lh-body:1.5;     /* @kind font */
+  --lh-code:1.7;     /* @kind font */
+
+  /* ---- Tracking ---- */
+  --ls-display:-0.03em; /* @kind font */
+  --ls-title:-0.01em;   /* @kind font */
+  --ls-body:0;          /* @kind font */
+  --ls-code:0.01em;     /* @kind font */
+  --ls-label:0.14em;    /* @kind font */
+}
