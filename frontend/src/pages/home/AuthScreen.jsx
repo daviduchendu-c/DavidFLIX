@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Icon from "../../components/Icon";
 import Logo from "../../components/Logo";
+import ThemeToggle from "../../components/ThemeToggle";
 
 const FEATURES = [
 	{
@@ -39,16 +40,19 @@ const AuthScreen = () => {
 			<div className='dot-field border-b border-line-subtle'>
 				<header className='mx-auto flex max-w-layout items-center justify-between px-4 py-4 md:px-8'>
 					<Logo size='lg' />
-					<Link to={"/login"} className='btn-ghost btn-sm'>
-						Sign in
-					</Link>
+					<div className='flex items-center gap-2'>
+						<ThemeToggle />
+						<Link to={"/login"} className='btn-ghost btn-sm'>
+							Sign in
+						</Link>
+					</div>
 				</header>
 
-				<div className='mx-auto grid max-w-layout items-center gap-12 px-4 pb-24 pt-16 md:px-8 lg:grid-cols-[1.1fr_1fr] lg:pb-32 lg:pt-24'>
+				<div className='mx-auto grid max-w-layout grid-cols-1 items-center gap-12 px-4 pb-24 pt-16 md:px-8 lg:grid-cols-[1.1fr_1fr] lg:pb-32 lg:pt-24'>
 					<div>
 						<p className='eyebrow mb-6'>Movies · TV shows · Trailers</p>
 						<h1 className='font-expanded text-[clamp(38px,6vw,64px)] leading-[1.02] tracking-[-0.02em]'>
-							Every trailer. <span className='text-azure'>One place.</span>
+							Every trailer. <span className='text-link'>One place.</span>
 						</h1>
 						<p className='mt-6 max-w-xl text-lg text-ink-body'>
 							Browse what's trending in film and TV, watch the trailers, and find something to watch
@@ -75,7 +79,7 @@ const AuthScreen = () => {
 						</form>
 						<p className='mt-3 text-sm text-ink-faint'>
 							Already have an account?{" "}
-							<Link to='/login' className='font-semibold text-azure hover:text-azure-tint'>
+							<Link to='/login' className='font-semibold text-link hover:text-link-hover'>
 								Sign in
 							</Link>
 						</p>
@@ -94,7 +98,7 @@ const AuthScreen = () => {
 				{FEATURES.map((feature, i) => (
 					<section
 						key={feature.eyebrow}
-						className={`grid items-center gap-10 md:grid-cols-2 md:gap-16 ${i % 2 ? "md:[&>*:first-child]:order-2" : ""}`}
+						className={`grid grid-cols-1 items-center gap-10 md:grid-cols-2 md:gap-16 ${i % 2 ? "md:[&>*:first-child]:order-2" : ""}`}
 					>
 						<div>
 							<p className='eyebrow mb-4'>{feature.eyebrow}</p>
@@ -140,7 +144,7 @@ function SearchMock() {
 				{["#123A5C", "#1D6D8F", "#123A5C"].map((fill, i) => (
 					<div key={i}>
 						<div className='flex aspect-[2/3] items-center justify-center rounded-sm' style={{ background: fill }}>
-							<Icon name='play_arrow' size={28} className={i === 1 ? "text-azure-tint" : "text-ink-faint"} />
+							<Icon name='play_arrow' size={28} className={i === 1 ? "text-link-tint" : "text-ink-faint"} />
 						</div>
 						<div className='mt-2 h-2.5 w-4/5 rounded-full bg-surface-raised' />
 					</div>

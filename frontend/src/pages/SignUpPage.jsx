@@ -25,7 +25,7 @@ const SignUpPage = () => {
 			footer={
 				<>
 					Already a member?{" "}
-					<Link to={"/login"} className='font-semibold text-azure hover:text-azure-tint'>
+					<Link to={"/login"} className='font-semibold text-link hover:text-link-hover'>
 						Sign in
 					</Link>
 				</>

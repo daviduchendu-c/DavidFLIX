@@ -1,12 +1,14 @@
 import { Link } from "react-router-dom";
 import Logo from "../components/Logo";
 import Icon from "../components/Icon";
+import ThemeToggle from "../components/ThemeToggle";
 
 const NotFoundPage = () => {
 	return (
 		<div className='dot-field flex min-h-screen flex-col bg-surface-page text-ink-strong'>
-			<header className='mx-auto w-full max-w-layout px-4 py-4 md:px-8'>
+			<header className='mx-auto flex w-full max-w-layout items-center justify-between px-4 py-4 md:px-8'>
 				<Logo size='lg' />
+				<ThemeToggle />
 			</header>
 			<main className='mx-auto flex w-full max-w-layout flex-1 flex-col justify-center px-4 py-24 md:px-8'>
 				<p className='eyebrow mb-4'>Error 404</p>

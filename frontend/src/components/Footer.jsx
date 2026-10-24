@@ -10,7 +10,7 @@ const Footer = () => {
 							href='https://www.themoviedb.org/'
 							target='_blank'
 							rel='noreferrer'
-							className='font-semibold text-azure hover:text-azure-tint'
+							className='font-semibold text-link hover:text-link-hover'
 						>
 							TMDB
 						</a>

@@ -25,7 +25,8 @@ const HomeScreen = () => {
 
 	return (
 		<>
-			<div className='relative isolate flex min-h-[88vh] flex-col text-ink-strong'>
+			{/* Scoped dark band: key art needs a navy scrim, so this stays dark in both themes. */}
+			<div className='iwd-dark relative isolate flex min-h-[88vh] flex-col text-ink-strong'>
 				<Navbar />
 
 				{imgLoading && <div className='shimmer absolute inset-0 -z-10' />}
@@ -51,7 +52,7 @@ const HomeScreen = () => {
 							<span className='badge'>{trendingContent.adult ? "18+" : "PG-13"}</span>
 							{trendingContent.vote_average > 0 && (
 								<span className='flex items-center gap-1 font-semibold'>
-									<Icon name='star' size={18} className='text-azure' />
+									<Icon name='star' size={18} className='text-link' />
 									{trendingContent.vote_average.toFixed(1)}
 								</span>
 							)}

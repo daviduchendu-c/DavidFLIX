@@ -4,6 +4,7 @@ import { useAuthStore } from "../store/authUser";
 import { useContentStore } from "../store/content";
 import Icon from "./Icon";
 import Logo from "./Logo";
+import ThemeToggle from "./ThemeToggle";
 
 const Navbar = () => {
 	const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -18,9 +19,9 @@ const Navbar = () => {
 	];
 
 	return (
-		<header className='relative z-50 mx-auto flex max-w-layout flex-wrap items-center justify-between px-4 py-4 md:px-8'>
+		<header className='relative z-50 mx-auto flex w-full max-w-layout flex-wrap items-center justify-between px-4 py-4 md:px-8'>
 			<div className='flex items-center gap-10'>
-				<Logo />
+				<Logo compact />
 
 				<nav className='hidden items-center gap-6 sm:flex'>
 					{links.map((link) => (
@@ -37,6 +38,7 @@ const Navbar = () => {
 			</div>
 
 			<div className='flex items-center gap-1'>
+				<ThemeToggle />
 				<Link to='/search' className='btn-icon border-transparent' aria-label='Search'>
 					<Icon name='search' />
 				</Link>

@@ -21,7 +21,7 @@ const LoginPage = () => {
 			footer={
 				<>
 					New to DavidFLIX?{" "}
-					<Link to={"/signup"} className='font-semibold text-azure hover:text-azure-tint'>
+					<Link to={"/signup"} className='font-semibold text-link hover:text-link-hover'>
 						Create an account
 					</Link>
 				</>

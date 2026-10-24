@@ -14,6 +14,10 @@ async function searchAndRecord(req, res, { type, imageKey, titleKey }) {
         }
 
         const top = response.results[0];
+        // Re-searching a title moves it to the top instead of saving a duplicate.
+        await User.findByIdAndUpdate(req.user._id, {
+            $pull: { searchHistory: { id: top.id, searchType: type } },
+        });
         await User.findByIdAndUpdate(req.user._id, {
             $push: {
                 searchHistory: {

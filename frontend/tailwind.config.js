@@ -5,6 +5,7 @@ import tailwindScrollbarHide from "tailwind-scrollbar-hide";
 // given as hex so Tailwind opacity modifiers (bg-navy/80) keep working.
 /** @type {import('tailwindcss').Config} */
 export default {
+	darkMode: ["selector", ".iwd-dark"],
 	content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
 	theme: {
 		extend: {
@@ -33,6 +34,15 @@ export default {
 					strong: "var(--text-strong)",
 					body: "var(--text-body)",
 					faint: "var(--text-faint)",
+				},
+				link: {
+					DEFAULT: "var(--text-link)",
+					hover: "var(--text-link-hover)",
+				},
+				interactive: {
+					DEFAULT: "var(--interactive)",
+					hover: "var(--interactive-hover)",
+					on: "var(--text-on-secondary)",
 				},
 				line: {
 					subtle: "var(--border-subtle)",

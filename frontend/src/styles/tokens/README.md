@@ -9,4 +9,4 @@ the brand.
 stylesheet, so the same Google Fonts URL is loaded with a `<link>` in
 `index.html` instead.
 
-DavidFLIX runs on the system's dark inversion: `<body class="iwd-dark">`.
+DavidFLIX is light-first like the system. Dark mode adds `.iwd-dark` to `<html>` (see `src/store/theme.js`), and the home-screen hero band is always a scoped `.iwd-dark` block because it sits on movie key art.

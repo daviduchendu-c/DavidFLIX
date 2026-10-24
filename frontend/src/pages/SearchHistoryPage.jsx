@@ -24,7 +24,7 @@ const SearchHistoryPage = () => {
 		const getSearchHistory = async () => {
 			try {
 				const res = await axios.get(`/api/v1/search/history`);
-				setSearchHistory(res.data.content);
+				setSearchHistory([...res.data.content].reverse()); // newest first
 			} catch (error) {
 				setSearchHistory([]);
 			}

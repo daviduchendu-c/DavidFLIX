@@ -48,7 +48,7 @@
 		font-size: 12.5px;
 	}
 	.btn-primary {
-		@apply btn bg-azure text-navy shadow-sm hover:bg-azure-tint disabled:bg-surface-sunken disabled:text-ink-faint;
+		@apply btn bg-interactive text-interactive-on shadow-sm hover:bg-interactive-hover disabled:bg-surface-sunken disabled:text-ink-faint;
 	}
 	.btn-ghost {
 		@apply btn border-line bg-transparent text-ink-strong hover:bg-surface-raised;
@@ -90,7 +90,7 @@
 
 	/* ---- Eyebrow: uppercase micro-label with the standing red node dot ---- */
 	.eyebrow {
-		@apply flex items-center gap-2 text-azure;
+		@apply flex items-center gap-2 text-link;
 		font-size: var(--fs-label);
 		font-weight: var(--fw-bold);
 		letter-spacing: var(--ls-label);
@@ -160,8 +160,12 @@
 
 	/* 18px circuit-dot field — the system's sanctioned texture, kept at low presence. */
 	.dot-field {
-		background-image: url("/textures/dot-field.svg");
+		background-image: url("/textures/dot-field-light.svg");
 		background-size: 18px 18px;
+	}
+	.iwd-dark .dot-field,
+	.iwd-dark.dot-field {
+		background-image: url("/textures/dot-field.svg");
 	}
 
 	/* Flat navy scrims over key art. Transparency only, no gradients. */

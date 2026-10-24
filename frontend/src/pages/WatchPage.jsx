@@ -24,7 +24,11 @@ const WatchPage = () => {
 		const getTrailers = async () => {
 			try {
 				const res = await axios.get(`/api/v1/${contentType}/${id}/trailers`);
-				setTrailers(res.data.trailers.filter((t) => t.site === "YouTube"));
+				// Official trailers first; TMDB often lists clips and featurettes ahead of them.
+				const rank = (t) => (t.type === "Trailer" ? 0 : t.type === "Teaser" ? 1 : 2) - (t.official ? 0.5 : 0);
+				setTrailers(
+					res.data.trailers.filter((t) => t.site === "YouTube").sort((a, b) => rank(a) - rank(b))
+				);
 			} catch (error) {
 				setTrailers([]);
 			}
@@ -165,7 +169,7 @@ const WatchPage = () => {
 							<span className='badge'>{content.adult ? "18+" : "PG-13"}</span>
 							{content.vote_average > 0 && (
 								<span className='flex items-center gap-1 font-semibold'>
-									<Icon name='star' size={18} className='text-azure' />
+									<Icon name='star' size={18} className='text-link' />
 									{content.vote_average.toFixed(1)}
 								</span>
 							)}
