@@ -19,12 +19,25 @@ const __dirname = path.resolve();
 app.use(express.json());
 app.use(cookieParser());
 
+// Make sure the database is connected before any API route runs
+// (on Vercel each cold start begins without a connection).
+app.use('/api', async (req, res, next) => {
+    try {
+        await connectDB();
+        next();
+    } catch (error) {
+        console.error(`Error connecting to MongoDB: ${error.message}`);
+        res.status(503).json({ success: false, message: 'Database unavailable, try again shortly' });
+    }
+});
+
 app.use("/api/v1/auth",authRoutes);
 app.use("/api/v1/movie",protectRoute,movieRoutes);
 app.use("/api/v1/tv",protectRoute,tvRoutes);
 app.use("/api/v1/search",protectRoute,searchRoutes);
 
-if (ENV_VAR.NODE_ENV === 'production') {
+// On Vercel the built frontend is served by the CDN; this branch is for `npm start`.
+if (ENV_VAR.NODE_ENV === 'production' && !process.env.VERCEL) {
     app.use(express.static(path.join(__dirname, 'frontend', 'dist')));
 
     // Express 5 needs a named wildcard; hand every non-API route to the SPA.
@@ -33,7 +46,14 @@ if (ENV_VAR.NODE_ENV === 'production') {
     });
 }
 
-app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
-    connectDB();
-});
+if (!process.env.VERCEL) {
+    app.listen(PORT, () => {
+        console.log(`Server is running on port ${PORT}`);
+        connectDB().catch((error) => {
+            console.error(`Error connecting to MongoDB: ${error.message}`);
+            process.exit(1);
+        });
+    });
+}
+
+export default app;
